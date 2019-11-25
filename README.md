@@ -30,7 +30,7 @@ The code is divided in two parts :
 * **Mixer** : Handles the volume
 
 Here is a small diagram, legend :
-* +-> Interract with
+* +-> Interracts with
 * +-- Belongs to
 ```
 Input (Keyboard / Midi)
