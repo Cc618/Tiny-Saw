@@ -3,20 +3,22 @@
 #include <portaudio.h>
 
 #include "consts.h"
-#include "voice.h"
+#include "audiohandler.h"
 
 namespace audio
 {
     // TODO : TESTS //
     // TODO : deletes
-    static Oscillator *osc = new SawOscillator();
-    static Mixer *mix = new Mixer(1.f);
-    static Voice voice(440, 0, osc, mix);
+//    static Oscillator *osc = new SawOscillator();
+//    static Mixer *mix = new Mixer(1.f);
+//    static Voice voice(440, 0, osc, mix);
 
     // Global Variables //
     static PaStream *stream;
 
     float mainVolume = .10f;
+
+    static AudioHandler audio;
 
     // Intern Functions //
     // Main callback
@@ -32,7 +34,7 @@ namespace audio
         float sample;
         for (unsigned long i = 0; i < samplesPerBuffer; ++i)
         {
-            sample = voice.nextSample(1.f / static_cast<float>(SAMPLE_RATE));
+            sample = audio.nextSample(1.f / static_cast<float>(SAMPLE_RATE));
 
             // Clip sample
             if (sample <= -1.f)

@@ -10,6 +10,11 @@ class AudioHandler
 public:
     AudioHandler();
 
+public:
+    // Returns the generated sample
+    // - dt : The time ellapsed since the last sample generation
+    float nextSample(const float dt);
+
 private:
     SoundGenerator _generator;
 };

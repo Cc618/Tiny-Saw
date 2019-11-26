@@ -9,6 +9,7 @@
 class Voice
 {
 public:
+    Voice();
     Voice(const float FREQ, const float PHASE, const Oscillator *osc, const Mixer *mixer);
 
 public:
