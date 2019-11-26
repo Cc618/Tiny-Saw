@@ -14,6 +14,9 @@ SoundGenerator::SoundGenerator()
 
 SoundGenerator::~SoundGenerator()
 {
+    for (const NoteHandler *NOTE : _notes)
+        delete NOTE;
+
     delete _osc;
     delete _mix;
 }
@@ -22,30 +25,29 @@ float SoundGenerator::nextSample(const float dt)
 {
     // Make the sum of all voices
     float sample = 0.f;
-    for (Voice &voice : _voices)
+    for (NoteHandler *note : _notes)
     {
         // Generate the sample
-        sample += voice.nextSample(dt);
+        sample += note->nextSample(dt);
     }
 
     return sample * _mix->nextVolume(dt);
 }
 
-void SoundGenerator::beginVoice(const Note &NOTE)
+void SoundGenerator::beginNote(const int ID, const float FREQUENCY)
 {
-    _voices.push_back(Voice(NOTE.frequency, 0, _osc, _mix));
+    _notes.push_back(new NoteHandler(ID, FREQUENCY, _osc));
 }
 
-// TODO
-#include <qdebug.h>
-
-void SoundGenerator::endVoice(const Note &NOTE)
+void SoundGenerator::endNote(const int ID)
 {
-    for (const Voice &VOICE : _voices)
-        if (VOICE._freq == NOTE.frequency)
+    for (NoteHandler *NOTE : _notes)
+        if (*NOTE == ID)
         {
+            delete NOTE;
+
             // Try remove
-            _voices.removeOne(VOICE);
+            _notes.removeOne(NOTE);
             return;
         }
 }

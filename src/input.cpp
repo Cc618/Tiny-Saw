@@ -1,11 +1,13 @@
 #include "input.h"
 
 // TODO : rm
+#include <map>
 #include <QDebug>
 #include <QList>
 
 #include "consts.h"
 #include "soundgenerator.h"
+#include "notehandler.h"
 
 namespace input
 {
@@ -46,8 +48,10 @@ namespace input
     };
 
     // To handle key presses after the audio synthesis
-    static QList<Note> nextPressedKeys,
-        nextReleasedKeys;
+    // { ID, FREQUENCY }
+    static QList<std::pair<int, float>> nextPressedKeys;
+    // { ID }
+    static QList<int> nextReleasedKeys;
 
     // Functions //
     void changeCurrentOctave(const bool INCREASE)
@@ -72,9 +76,9 @@ namespace input
             if (key == c)
             {
                 if (PRESSED)
-                    nextPressedKeys.push_back(Note(FREQ_TABLE[offset] * octaveFactor));
+                    nextPressedKeys.push_back(std::make_pair(offset, FREQ_TABLE[offset] * octaveFactor));
                 else
-                    nextReleasedKeys.push_back(Note(FREQ_TABLE[offset] * octaveFactor));
+                    nextReleasedKeys.push_back(offset);
 
                 return true;
             }
@@ -88,24 +92,14 @@ namespace input
     void triggerKeys()
     {
         // Trigger
-        for (const Note &note : nextPressedKeys)
-            beginNote(note);
+        for (const auto &note : nextPressedKeys)
+            SoundGenerator::instance->beginNote(note.first, note.second);
 
-        for (const Note &note : nextReleasedKeys)
-            endNote(note);
+        for (const int ID : nextReleasedKeys)
+            SoundGenerator::instance->endNote(ID);
 
         // Clear
         nextPressedKeys.clear();
         nextReleasedKeys.clear();
-    }
-
-    void beginNote(const Note &NOTE)
-    {
-        SoundGenerator::instance->beginVoice(NOTE);
-    }
-
-    void endNote(const Note &NOTE)
-    {
-        SoundGenerator::instance->endVoice(NOTE);
     }
 }

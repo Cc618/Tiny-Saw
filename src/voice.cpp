@@ -3,11 +3,11 @@
 #include <cmath>
 
 Voice::Voice()
-    : _freq(0), _phase(0), _osc(nullptr), _mixer(nullptr)
+    : _freq(0), _phase(0), _osc(nullptr)
 {}
 
-Voice::Voice(const float FREQ, const float PHASE, const Oscillator *osc, const Mixer *mixer)
-    : _freq(FREQ), _phase(PHASE), _osc(osc), _mixer(mixer)
+Voice::Voice(const float FREQ, const float PHASE, const Oscillator *osc)
+    : _freq(FREQ), _phase(PHASE), _osc(osc)
 {}
 
 float Voice::nextSample(const float dt)
@@ -20,8 +20,3 @@ float Voice::nextSample(const float dt)
     return _osc->getSample(_phase);
 }
 
-bool Voice::operator==(const Voice &v) const
-{
-    // TODO : Move in NoteHandler
-    return _freq == v._freq;
-}

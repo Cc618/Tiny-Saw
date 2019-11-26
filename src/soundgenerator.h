@@ -6,7 +6,7 @@
 #include <QList>
 
 #include "voice.h"
-#include "note.h"
+#include "notehandler.h"
 
 class SoundGenerator
 {
@@ -24,12 +24,12 @@ public:
     float nextSample(const float dt);
 
 public:
-    // Begin / End Voice
-    void beginVoice(const Note &NOTE);
-    void endVoice(const Note &NOTE);
+    // Begin / End Note
+    void beginNote(const int ID, const float FREQUENCY);
+    void endNote(const int ID);
 
 private:
-    QList<Voice> _voices;
+    QList<NoteHandler*> _notes;
     Mixer *_mix;
     Oscillator *_osc;
 };

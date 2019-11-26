@@ -25,9 +25,9 @@ The code is divided in two parts :
 * **audio** : The file managing the audio synthesis from a low level
 * **input** : The file containing all input events triggered from graphics
 * **AudioHandler** : Handles audio components
-* **SoundGenerator** : Manages all voices and the oscillator
+* **SoundGenerator** : Manages all voices, the mixer and the oscillator
 * **Oscillator** : Provides sound wave's shape
-* **KeyHandler** : Gathers all voices for one key press, provides also the mixer
+* **NoteHandler** : Gathers all voices for one note event
 * **Mixer** : Handles the volume of a key handler
 * **Voice** : Generates the sound for one frequency
 
@@ -40,8 +40,8 @@ Input (Keyboard / Midi)
 +-> AudioHandler
 	+-> SoundGenerator
 		+-- Oscillator
-		+-- KeyHandlers
-			+-- Mixer
+		+-- Mixer
+		+-- NoteHandlers
 			+-- Voices
 	+-> Output (Speakers / File)
 ```

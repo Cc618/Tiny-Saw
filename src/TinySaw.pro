@@ -23,6 +23,7 @@ SOURCES += \
     mainwindow.cpp \
     mixer.cpp \
     note.cpp \
+    notehandler.cpp \
     oscillator.cpp \
     soundgenerator.cpp \
     voice.cpp
@@ -35,6 +36,7 @@ HEADERS += \
     mainwindow.h \
     mixer.h \
     note.h \
+    notehandler.h \
     oscillator.h \
     soundgenerator.h \
     voice.h

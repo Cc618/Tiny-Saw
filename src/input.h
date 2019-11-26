@@ -5,7 +5,7 @@
 
 #include <QVector>
 
-#include "note.h"
+#include "notehandler.h"
 
 namespace input
 {
@@ -19,10 +19,6 @@ namespace input
 
     // Triggers the keys when we don't use the synth
     void triggerKeys();
-
-    // Begin / end note
-    void beginNote(const Note &NOTE);
-    void endNote(const Note &NOTE);
 };
 
 #endif // INPUT_H
