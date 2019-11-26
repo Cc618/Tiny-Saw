@@ -18,9 +18,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     audio.cpp \
     audiohandler.cpp \
+    input.cpp \
     main.cpp \
     mainwindow.cpp \
     mixer.cpp \
+    note.cpp \
     oscillator.cpp \
     soundgenerator.cpp \
     voice.cpp
@@ -29,8 +31,10 @@ HEADERS += \
     audio.h \
     audiohandler.h \
     consts.h \
+    input.h \
     mainwindow.h \
     mixer.h \
+    note.h \
     oscillator.h \
     soundgenerator.h \
     voice.h

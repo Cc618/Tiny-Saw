@@ -7,17 +7,10 @@
 
 namespace audio
 {
-    // TODO : TESTS //
-    // TODO : deletes
-//    static Oscillator *osc = new SawOscillator();
-//    static Mixer *mix = new Mixer(1.f);
-//    static Voice voice(440, 0, osc, mix);
-
     // Global Variables //
-    static PaStream *stream;
-
     float mainVolume = .7f;
 
+    static PaStream *stream;
     static AudioHandler audio;
 
     // Intern Functions //
@@ -34,7 +27,8 @@ namespace audio
         float sample;
         for (unsigned long i = 0; i < samplesPerBuffer; ++i)
         {
-            sample = audio.nextSample(1.f / static_cast<float>(SAMPLE_RATE));
+            // Generate the next sample
+            sample = audio.nextSample(1.f / SAMPLE_RATE);
 
             // Clip sample
             if (sample <= -1.f)
@@ -64,7 +58,7 @@ namespace audio
             0,          // No input
             2,          // Stereo
             paFloat32,  // Float output
-            SAMPLE_RATE,
+            static_cast<double>(SAMPLE_RATE),
             256,        // Samples per buffer
             audioCallback,
             nullptr) != paNoError)

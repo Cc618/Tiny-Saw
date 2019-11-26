@@ -4,6 +4,10 @@
 #include <QApplication>
 
 #include "audio.h"
+#include "input.h"
+
+// TODO : rm
+#include "QDebug"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,6 +21,40 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *e)
+{
+    // Only key type
+    if (!e->isAutoRepeat())
+    {
+        // Retrieve the char code (uppercase)
+        QChar key = static_cast<QChar>(e->key());
+        key = key.toUpper();
+
+        // Test for note
+        if (!input::triggerFromKey(key, true))
+        {
+            // TODO : Other commands
+        }
+    }
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *e)
+{
+    // Only key type
+    if (!e->isAutoRepeat())
+    {
+        // Retrieve the char code (uppercase)
+        QChar key = static_cast<QChar>(e->key());
+        key = key.toUpper();
+
+        // Test for note
+        if (!input::triggerFromKey(key, false))
+        {
+            // TODO : Other commands
+        }
+    }
 }
 
 void MainWindow::setupSlots()
