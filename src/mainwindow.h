@@ -16,6 +16,17 @@ public:
     ~MainWindow();
 
 private:
+    // Inits the slots
+    void setupSlots();
+
+private slots:
+    // Actions
+    void onExit();
+
+    // Widgets
+    void onMainVolume(int value);
+
+private:
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

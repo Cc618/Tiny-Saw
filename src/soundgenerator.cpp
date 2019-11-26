@@ -3,7 +3,7 @@
 SoundGenerator::SoundGenerator()
 {
     _osc = new SawOscillator();
-    _mix = new Mixer(1.f);
+    _mix = new Mixer(.16f);
 
     // TODO : Move
     _voices.append(Voice(440, 0, _osc, _mix));

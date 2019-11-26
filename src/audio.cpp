@@ -16,7 +16,7 @@ namespace audio
     // Global Variables //
     static PaStream *stream;
 
-    float mainVolume = .10f;
+    float mainVolume = .7f;
 
     static AudioHandler audio;
 
