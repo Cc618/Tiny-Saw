@@ -4,6 +4,7 @@
 
 #include "consts.h"
 #include "audiohandler.h"
+#include "input.h"
 
 namespace audio
 {
@@ -42,6 +43,9 @@ namespace audio
             *out++ = sample;
             *out++ = sample;
         }
+
+        // Process keys
+        input::triggerKeys();
 
         return 0;
     }

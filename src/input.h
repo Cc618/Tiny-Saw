@@ -17,6 +17,9 @@ namespace input
     // Returns whether the key has been played
     bool triggerFromKey(const QChar key, const bool PRESSED);
 
+    // Triggers the keys when we don't use the synth
+    void triggerKeys();
+
     // Begin / end note
     void beginNote(const Note &NOTE);
     void endNote(const Note &NOTE);

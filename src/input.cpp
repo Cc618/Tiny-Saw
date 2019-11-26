@@ -2,8 +2,10 @@
 
 // TODO : rm
 #include <QDebug>
+#include <QList>
 
 #include "consts.h"
+#include "soundgenerator.h"
 
 namespace input
 {
@@ -43,6 +45,10 @@ namespace input
         830.61f,	// G#
     };
 
+    // To handle key presses after the audio synthesis
+    static QList<Note> nextPressedKeys,
+        nextReleasedKeys;
+
     // Functions //
     void changeCurrentOctave(const bool INCREASE)
     {
@@ -66,9 +72,9 @@ namespace input
             if (key == c)
             {
                 if (PRESSED)
-                    beginNote(Note(FREQ_TABLE[offset] * octaveFactor));
+                    nextPressedKeys.push_back(Note(FREQ_TABLE[offset] * octaveFactor));
                 else
-                    endNote(Note(FREQ_TABLE[offset] * octaveFactor));
+                    nextReleasedKeys.push_back(Note(FREQ_TABLE[offset] * octaveFactor));
 
                 return true;
             }
@@ -79,13 +85,27 @@ namespace input
         return false;
     }
 
+    void triggerKeys()
+    {
+        // Trigger
+        for (const Note &note : nextPressedKeys)
+            beginNote(note);
+
+        for (const Note &note : nextReleasedKeys)
+            endNote(note);
+
+        // Clear
+        nextPressedKeys.clear();
+        nextReleasedKeys.clear();
+    }
+
     void beginNote(const Note &NOTE)
     {
-        qDebug() << "v " << NOTE.frequency;
+        SoundGenerator::instance->beginVoice(NOTE);
     }
 
     void endNote(const Note &NOTE)
     {
-        qDebug() << "^ " << NOTE.frequency;
+        SoundGenerator::instance->endVoice(NOTE);
     }
 }

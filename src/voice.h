@@ -17,9 +17,17 @@ public:
     // - dt : The time ellapsed since the last sample generation
     float nextSample(const float dt);
 
+public:
+    // TODO : Remove ?
+    // Only compare frequency
+    bool operator==(const Voice &v) const;
+
+public:
+    // TODO : Move in private
+    float _freq;
+
 private:
-    float _freq,
-        _phase;
+    float _phase;
 
     const Oscillator *_osc;
     const Mixer *_mixer;
