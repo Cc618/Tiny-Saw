@@ -22,22 +22,26 @@ The code is divided in two parts :
 * MainWindow : Handles window and key events
 
 ### Audio :
-* **audio** : The file containing all functions to interract with audio from graphics
-* **AudioHandler** : Handle audio components
-* **SoundGenerator** : Manages all voices, mixers, oscillators
-* **Voice** : Generates the sound from one note
+* **audio** : The file managing the audio synthesis from a low level
+* **input** : The file containing all input events triggered from graphics
+* **AudioHandler** : Handles audio components
+* **SoundGenerator** : Manages all voices and the oscillator
 * **Oscillator** : Provides sound wave's shape
-* **Mixer** : Handles the volume
+* **KeyHandler** : Gathers all voices for one key press, provides also the mixer
+* **Mixer** : Handles the volume of a key handler
+* **Voice** : Generates the sound for one frequency
 
 Here is a small diagram, legend :
 * +-> Interracts with
 * +-- Belongs to
 ```
 Input (Keyboard / Midi)
++-> input
 +-> AudioHandler
-    +-> SoundGenerator
-        +-- Voices
-        |   +-- Mixer
-        |   +-- Oscillator
-        +-> Output (Speakers / File)
+	+-> SoundGenerator
+		+-- Oscillator
+		+-- KeyHandlers
+			+-- Mixer
+			+-- Voices
+	+-> Output (Speakers / File)
 ```
