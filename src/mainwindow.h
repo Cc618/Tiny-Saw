@@ -30,6 +30,8 @@ private slots:
 
     // Widgets
     void onMainVolume(int value);
+    void onUnisonPitch(int value);
+    void onUnisonPhase(int value);
 
 private:
     Ui::MainWindow *ui;

@@ -6,6 +6,8 @@
 namespace audio
 {
     extern float mainVolume;
+    extern float unisonPitch;
+    extern float unisonPhase;
 
     // Inits the audio
     bool init();

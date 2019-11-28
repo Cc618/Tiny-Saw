@@ -17,17 +17,112 @@
    <widget class="QSlider" name="mainVolume">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>10</y>
-      <width>41</width>
-      <height>541</height>
+      <x>720</x>
+      <y>40</y>
+      <width>51</width>
+      <height>511</height>
      </rect>
     </property>
     <property name="toolTip">
      <string>Main Volume</string>
     </property>
+    <property name="maximum">
+     <number>255</number>
+    </property>
     <property name="value">
-     <number>70</number>
+     <number>127</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="volumeText">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>10</y>
+      <width>71</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Volume</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="unisonPitchText">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>10</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unison Pitch</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QSlider" name="unisonPitch">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>40</y>
+      <width>51</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Main Volume</string>
+    </property>
+    <property name="maximum">
+     <number>255</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="unisonPhaseText">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>10</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unison Phase</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QSlider" name="unisonPhase">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>40</y>
+      <width>51</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Main Volume</string>
+    </property>
+    <property name="maximum">
+     <number>255</number>
+    </property>
+    <property name="value">
+     <number>0</number>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>

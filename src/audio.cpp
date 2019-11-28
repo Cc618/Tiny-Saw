@@ -9,7 +9,9 @@
 namespace audio
 {
     // Global Variables //
-    float mainVolume = .7f;
+    float mainVolume = .5f;
+    float unisonPitch = 0.f;
+    float unisonPhase = 0.f;
 
     static PaStream *stream;
     static AudioHandler audio;
@@ -29,15 +31,13 @@ namespace audio
         for (unsigned long i = 0; i < samplesPerBuffer; ++i)
         {
             // Generate the next sample
-            sample = audio.nextSample(1.f / SAMPLE_RATE);
+            sample = audio.nextSample(1.f / SAMPLE_RATE) * mainVolume;
 
             // Clip sample
-            if (sample <= -1.f)
-                sample = -mainVolume;
-            else if (sample >= 1.f)
-                sample = mainVolume;
-            else
-                sample *= mainVolume;
+            if (sample < -1.f)
+                sample = -1.f;
+            else if (sample > 1.f)
+                sample = 1.f;
 
             // Send to audio output
             *out++ = sample;

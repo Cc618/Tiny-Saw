@@ -1,7 +1,7 @@
 #include "input.h"
 
-// TODO : rm
 #include <map>
+// TODO : rm
 #include <QDebug>
 #include <QList>
 
@@ -29,22 +29,38 @@ namespace input
         'U',        // F#
         'J',        // G
         'I',        // G#
+        'K',        // A2
+        'O',        // A#2
+        'L',        // B2
+        ';',        // C2
+        '[',        // C#2
+        '\'',        // D2
+        ']',        // D#2
+        '\\',        // E2
     };
 
     // Frequencies for A to G# keys excluding sharps
     const float FREQ_TABLE[] = {
-        440.f,		// A
-        466.16f,    // A#
-        493.88f,	// B
-        523.25f,	// C
-        554.37f,	// C#
-        587.33f,	// D
-        622.25f,	// D#
-        659.25f,	// E
-        698.46f,	// F
-        739.99f,	// F#
-        783.99f,	// G
-        830.61f,	// G#
+        440.f,          // A
+        466.16f,        // A#
+        493.88f,        // B
+        523.25f,        // C
+        554.37f,        // C#
+        587.33f,        // D
+        622.25f,        // D#
+        659.25f,        // E
+        698.46f,        // F
+        739.99f,        // F#
+        783.99f,        // G
+        830.61f,        // G#
+        440.f * 2.f,    // A2
+        466.16f * 2.f,  // A#2
+        493.88f * 2.f,  // B2
+        523.25f * 2.f,  // C2
+        554.37f * 2.f,  // C#2
+        587.33f * 2.f,  // D2
+        622.25f * 2.f,  // D#2
+        659.25f * 2.f,  // E2
     };
 
     // To handle key presses after the audio synthesis

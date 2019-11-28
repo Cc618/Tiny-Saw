@@ -59,8 +59,13 @@ void MainWindow::keyReleaseEvent(QKeyEvent *e)
 
 void MainWindow::setupSlots()
 {
+    // Menu
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(onExit()));
+
+    // Widgets
     connect(ui->mainVolume, SIGNAL(valueChanged(int)), this, SLOT(onMainVolume(int)));
+    connect(ui->unisonPitch, SIGNAL(valueChanged(int)), this, SLOT(onUnisonPitch(int)));
+    connect(ui->unisonPhase, SIGNAL(valueChanged(int)), this, SLOT(onUnisonPhase(int)));
 }
 
 void MainWindow::onExit()
@@ -70,5 +75,15 @@ void MainWindow::onExit()
 
 void MainWindow::onMainVolume(int value)
 {
-    audio::mainVolume = static_cast<float>(value) * (1.f / 100.f);
+    audio::mainVolume = static_cast<float>(value) / static_cast<float>(ui->mainVolume->maximum());
+}
+
+void MainWindow::onUnisonPitch(int value)
+{
+    audio::unisonPitch = static_cast<float>(value) / static_cast<float>(ui->unisonPitch->maximum());
+}
+
+void MainWindow::onUnisonPhase(int value)
+{
+    audio::unisonPhase = static_cast<float>(value) / static_cast<float>(ui->unisonPhase->maximum());
 }
